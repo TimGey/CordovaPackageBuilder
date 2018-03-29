@@ -1,0 +1,45 @@
+﻿{
+  "prod": {
+    "URL": "'https://meap.foncia.net'+'/meap/services'+'/v1'",
+    "android": {
+      "appli_name": "Ma visite d\\'immeubles",
+      "package_name": "fr.foncia.mobile.gestionvisite",
+      "deviceType": "PHONE",
+      "cordova_cmd": "cordova  build android --release"
+    },
+    "windows": {
+      "appli_name": "Ma visite d'immeubles",
+      "package_name": "Foncia.MobileGestionVisites.App",
+      "deviceType": "TABLET",
+      "cordova_cmd": "cordova  build windows --release --arch=x86 -- --appx=8.1-win"
+    },
+    "ios": {
+      "appli_name": "Ma visite d'immeubles",
+      "package_name": "Fonci.MobileGestionVisites.App",
+      "deviceType": [ "PHONE", "TABLET" ],
+      "cordova_cmd":"NOOOON FAIS PAS CAAAAAAAA!!!!!!!"
+    }
+  },
+  "preprod": {
+
+    "URL": "'https://preprod-meap.foncia.net'+'/meap/services'+'/v1'",
+    "android": {
+      "appli_name": "Preprod - Ma visite d\\'immeubles",
+      "package_name": "fr.foncia.mobile.gestionvisitePreprod",
+      "deviceType": "PHONE",
+      "cordova_cmd": "cordova  build android --release"
+    },
+    "windows": {
+      "appli_name": "Preprod - Ma visite d'immeubles",
+      "package_name": "Fonci.MobileGestionVisites.Preprod.App",
+      "deviceType": "TABLET",
+      "cordova_cmd": "cordova  build windows --release --arch=x86 -- --appx=8.1-win"
+    },
+    "ios": {
+      "appli_name": "Ma visite d'immeubles",
+      "package_name": "Fonci.MobileGestionVisites.App",
+      "deviceType": [ "PHONE", "TABLET" ],
+      "cordova_cmd": "NOOOON FAIS PAS CAAAAAAAA!!!!!!!"
+    }
+  }
+}
