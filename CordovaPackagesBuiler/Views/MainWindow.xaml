@@ -4,7 +4,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="620" Width="525"   
+        Title="{Binding Title}" Height="700" Width="600" MaxHeight="1000" MaxWidth="800" MinHeight="700" MinWidth="600"
          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
          TextElement.FontWeight="Regular"
          TextElement.FontSize="13"
@@ -29,6 +29,7 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -38,7 +39,7 @@
 
             <Label Content="Choisissez la solution"/>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
-                <Button  Command="{Binding SearchSolution}" Content="Rechercher" RenderTransformOrigin="2.12,0.156" Height="Auto"/>
+                <Button  Command="{Binding SearchSolution}" Content="Rechercher" RenderTransformOrigin="2.12,0.156" Height="Auto" Margin="3"/>
                 <Label Content="{Binding PathDirectory}"/>
             </StackPanel>
             <Label Grid.Row="2" Grid.ColumnSpan="3" Content="cochez le mode de déploiment"/>
@@ -48,7 +49,11 @@
             <CheckBox Grid.Row="5" IsChecked="{Binding Android}" Content="Android"/>
             <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding Windows}" Content="Windows"/>
             <CheckBox Grid.Row="5" Grid.Column="2" IsChecked="{Binding IOS}" Content="IOS"/>
-            <Button Grid.Row="7" Grid.ColumnSpan="3" Content="Générer" Command="{Binding GeneratePackage}" Height="Auto"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="3">
+                <Button  Content="chemin final" Height="auto" Margin="3"/>
+                <Label Content="test"/>
+            </StackPanel>
+            <Button Grid.Row="8" Grid.ColumnSpan="3" Content="Générer" Command="{Binding GeneratePackage}" Height="Auto" Margin="1"/>
 
 
             <Grid Grid.Row="6" Grid.ColumnSpan="3">

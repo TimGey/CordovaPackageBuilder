@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CordovaPackagesBuiler.Events;
 using Microsoft.Win32;
 using Prism.Events;
+using Ookii.Dialogs;
 
 namespace CordovaPackagesBuiler.Services
 {
@@ -41,6 +42,7 @@ namespace CordovaPackagesBuiler.Services
 
         public void SelectPath(string[] tPathFiles)
         {
+            //SelectFolder();
             string PathDirectory;
             _consoleService.clearConsole();
             OpenFileDialog opfile = new OpenFileDialog();
@@ -57,6 +59,22 @@ namespace CordovaPackagesBuiler.Services
                 }
                 _eventAggregator.GetEvent<PathEvent>().Publish(PathDirectory);
             }
+        }
+
+        public string SelectFolder()
+        {
+            string path = "";
+
+            var fbd = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            var result = fbd.ShowDialog();
+
+            if (result == true)
+            {
+                path = fbd.SelectedPath;
+                _consoleService.ConsoleAddText(path, 0);
+
+            }
+            return path;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace CordovaPackagesBuiler.Services
             _consoleService = consoleService;
         }
 
-        public void GeneratePackage(string platform, string DirectoryPath, string CordovaCmd)
+        public void CMDExecute(string DirectoryPath, string CordovaCmd)
         {
 
             var cmd = new Process();
@@ -29,11 +29,11 @@ namespace CordovaPackagesBuiler.Services
             cmd.StartInfo.RedirectStandardOutput = true;
             cmd.StartInfo.WorkingDirectory = DirectoryPath;
             cmd.Start();
-
+           
             Thread thread = new Thread(()=> ReaderHandler(cmd.StandardOutput));
             thread.Start();
-
            
+
 
         }
 
@@ -55,5 +55,6 @@ namespace CordovaPackagesBuiler.Services
                 _consoleService.ConsoleAddText("ReaderHandler---->" + ioe.ToString(), 2);
             }
         }
+      
     }
 }

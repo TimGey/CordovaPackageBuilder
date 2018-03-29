@@ -31,22 +31,24 @@ namespace CordovaPackagesBuiler.Services
         }
         #endregion
 
-
-        public bool CreateDirectoryOldConfig(string PathDirectory)
+        public bool CreateDirectory(string PathDirectory, string[] tDirectorys)
         {
             bool result = false;
             try
             {
-                if (!Directory.Exists(PathDirectory + @"\OldConfig"))
+                foreach (var directory in tDirectorys)
                 {
-                    _consoleService.ConsoleAddText("creation du dossier OldConfig :" + PathDirectory, 0);
-                    Directory.CreateDirectory(PathDirectory + @"\OldConfig");
-                    result = true;
+                    if (!Directory.Exists(PathDirectory + directory))
+                    {
+                        _consoleService.ConsoleAddText("creation du dossier " + directory + " :" + PathDirectory, 0);
+                        Directory.CreateDirectory(PathDirectory + directory);
+                        result = true;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                _consoleService.ConsoleAddText("CreateDirectoryOldConfig===>" + ex.ToString(), 1);
+                _consoleService.ConsoleAddText("CreateDirectory===>" + ex.ToString(), 1);
                 result = false;
             }
 
@@ -108,7 +110,6 @@ namespace CordovaPackagesBuiler.Services
                 _consoleService.ConsoleAddText("DeleteFile====>" + namefile + ex.ToString(), 2);
             }
         }
-
 
         public bool FileIsOpennable(string pathfile)
         {

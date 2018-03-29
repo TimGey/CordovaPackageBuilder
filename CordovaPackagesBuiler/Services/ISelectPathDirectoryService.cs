@@ -9,5 +9,6 @@ namespace CordovaPackagesBuiler.Services
   public  interface ISelectPathDirectoryService
     {
         void SelectPath(string[] tPathFile);
+        string SelectFolder();
     }
 }
