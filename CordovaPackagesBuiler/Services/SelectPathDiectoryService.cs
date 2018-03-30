@@ -13,6 +13,7 @@ namespace CordovaPackagesBuiler.Services
 {
     public class SelectPathDiectoryService : ISelectPathDirectoryService
     {
+
         private readonly IEventAggregator _eventAggregator;
         private readonly IConsoleService _consoleService;
 

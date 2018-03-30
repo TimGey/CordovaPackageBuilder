@@ -73,6 +73,7 @@
     <Compile Include="Events\FileIsFindEvent.cs" />
     <Compile Include="Events\MessageEvent.cs" />
     <Compile Include="Events\PathEvent.cs" />
+    <Compile Include="Events\ThreadFinishEvent.cs" />
     <Compile Include="Services\BackupFile.cs" />
     <Compile Include="Services\CmdCordovaService.cs" />
     <Compile Include="Services\ConfigurationService.cs" />

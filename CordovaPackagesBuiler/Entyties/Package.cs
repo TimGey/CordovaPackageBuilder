@@ -47,6 +47,14 @@ namespace CordovaPackagesBuiler.Entyties
         }
         private string _cordovaCmd;
 
+
+        public string Path_appli_generate
+        {
+            get { return _path_appli_generate; }
+            set { SetProperty(ref _path_appli_generate, value); }
+        }
+        private string _path_appli_generate;
+
         #endregion
 
         #region Constructeurs
@@ -59,14 +67,14 @@ namespace CordovaPackagesBuiler.Entyties
             NamePlatform = namePlatform;
         }
 
-        public Package(string namePlatform, string nameApli, string namePackage, string deviceType, string cordovaCmd)
+        public Package(string namePlatform, string nameApli, string namePackage, string deviceType, string cordovaCmd ,string path_appli_generate)
         {
             NamePackage = namePackage;
             NameApli = nameApli;
             DeviceType = deviceType;
             NamePlatform = namePlatform;
             CordovaCmd = cordovaCmd;
-
+            Path_appli_generate = path_appli_generate;
         }
         #endregion
     }

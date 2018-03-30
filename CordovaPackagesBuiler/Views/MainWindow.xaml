@@ -50,8 +50,8 @@
             <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding Windows}" Content="Windows"/>
             <CheckBox Grid.Row="5" Grid.Column="2" IsChecked="{Binding IOS}" Content="IOS"/>
             <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="3">
-                <Button  Content="chemin final" Height="auto" Margin="3"/>
-                <Label Content="test"/>
+                <Button Command="{Binding SelectFinalDirectoryPackages}" Content="chemin final" Height="auto" Margin="3"/>
+                <Label Content="{Binding PathFinalDirectory}"/>
             </StackPanel>
             <Button Grid.Row="8" Grid.ColumnSpan="3" Content="Générer" Command="{Binding GeneratePackage}" Height="Auto" Margin="1"/>
 

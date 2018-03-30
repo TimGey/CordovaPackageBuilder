@@ -8,6 +8,6 @@ namespace CordovaPackagesBuiler.Services
 {
   public interface ICmdCordovaService
     {
-        void CMDExecute(string DirectoryPath, string CordovaCmd);
+        void CMDExecute(string DirectoryPath, string CordovaCmd, bool sendFinish);
     }
 }

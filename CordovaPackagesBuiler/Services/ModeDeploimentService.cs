@@ -25,7 +25,7 @@ namespace CordovaPackagesBuiler.Services
         {
             var JDeploiment = JObject.Parse(_config.CONFIG_JSON.GetValue(mdd.ModeName.ToLower()).ToString());
             var Json = JObject.Parse(JDeploiment.GetValue(platform).ToString());
-            Package pk = new Package(platform, Json.GetValue("appli_name").ToString(), Json.GetValue("package_name").ToString(), Json.GetValue("deviceType").ToString(), Json.GetValue("cordova_cmd").ToString());
+            Package pk = new Package(platform, Json.GetValue("appli_name").ToString(), Json.GetValue("package_name").ToString(), Json.GetValue("deviceType").ToString(), Json.GetValue("cordova_cmd").ToString(), Json.GetValue("path_appli_generate").ToString());
             mdd.Cpackages.Add(pk);
 
             return mdd;

@@ -22,6 +22,12 @@ namespace CordovaPackagesBuiler.ViewModels
         #region Properties
 
 
+        public string PathFinalDirectory
+        {
+            get { return _pathFinalDirectory; }
+            set { SetProperty(ref _pathFinalDirectory, value); }
+        }
+        private string _pathFinalDirectory;
 
 
         public Config Config
@@ -144,7 +150,6 @@ namespace CordovaPackagesBuiler.ViewModels
         private readonly IGeneratedPackageService _generatedPackageService;
         #endregion
 
-
         #region Constructor
         public MainWindowViewModel(
             IConfigurationService configuationService,
@@ -166,6 +171,7 @@ namespace CordovaPackagesBuiler.ViewModels
             _generatedPackageService = generatedPackageService;
             Config = _configurationService.GetConfig();
             PathDirectory = "Chemin de la solution";
+            PathFinalDirectory = "Chemin de destination des packages générés";
             FilesFind = false;
             Tpaths = new string[] { Config.PATH_CONFIG_XML, Config.PATH_CONFIG_CONSTANT_JS, Config.PATH_NEXWORD_MODULE_JS };
             if (!_eventAggregator.GetEvent<MessageEvent>().Contains(OnMessageRecevied))
@@ -204,6 +210,9 @@ namespace CordovaPackagesBuiler.ViewModels
         }
 
         #endregion
+
+        #region Commandes
+
         #region SearchSolution
         public DelegateCommand SearchSolution => new DelegateCommand(selectpath, () => { return true; });
 
@@ -214,11 +223,20 @@ namespace CordovaPackagesBuiler.ViewModels
         }
         #endregion
 
+        #region SelectFinalDirectoryPackages
 
-        public DelegateCommand GeneratePackage => new DelegateCommand(SetGeneratePackage, () => { return FilesFind; }).ObservesProperty(() => FilesFind);
+        public DelegateCommand SelectFinalDirectoryPackages => new DelegateCommand(SelectFinalDirectory, () => { return true; });
 
+        private void SelectFinalDirectory()
+        {
+            PathFinalDirectory = _selectPathDirectoryService.SelectFolder();
+        }
+
+        #endregion
 
         #region GeneratePackage
+        public DelegateCommand GeneratePackage => new DelegateCommand(SetGeneratePackage, () => { return FilesFind; }).ObservesProperty(() => FilesFind);
+
         private void SetGeneratePackage()
         {
 
@@ -281,9 +299,9 @@ namespace CordovaPackagesBuiler.ViewModels
                 //------fin du choix de la platform------//
                 #endregion
                 //-----appel au service------//
-                if (platform != "")
+                if (platform != "" )
                 {
-                    _generatedPackageService.StartGeneratedPakage(platform, deployment, VersionCode, VersionName, PathDirectory);
+                    _generatedPackageService.StartGeneratedPakage(platform, deployment, VersionCode, VersionName, PathDirectory, PathFinalDirectory);
 
                 }
 
@@ -292,6 +310,6 @@ namespace CordovaPackagesBuiler.ViewModels
         }
         #endregion
 
-
+        #endregion
     }
 }

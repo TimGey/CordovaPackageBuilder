@@ -36,12 +36,16 @@ namespace CordovaPackagesBuiler.Services
             bool result = false;
             try
             {
-                foreach (var directory in tDirectorys)
+                for (var i = 0; i<tDirectorys.Length; i++)
                 {
-                    if (!Directory.Exists(PathDirectory + directory))
+                    if (i != 0)
                     {
-                        _consoleService.ConsoleAddText("creation du dossier " + directory + " :" + PathDirectory, 0);
-                        Directory.CreateDirectory(PathDirectory + directory);
+                        PathDirectory += tDirectorys[i-1];
+                    }
+                    if (!Directory.Exists(PathDirectory + tDirectorys[i]))
+                    {
+                        _consoleService.ConsoleAddText("creation du dossier " + tDirectorys[i] + " :" + PathDirectory, 0);
+                        Directory.CreateDirectory(PathDirectory + tDirectorys[i]);
                         result = true;
                     }
                 }

@@ -9,7 +9,7 @@ using CordovaPackagesBuiler.Entyties;
 
 namespace CordovaPackagesBuiler.Services
 {
-  public  class UpdateFileService : IUpdateFileService
+    public class UpdateFileService : IUpdateFileService
     {
         private readonly IBackupFile _backupFile;
         private readonly IConsoleService _consoleService;
@@ -23,7 +23,7 @@ namespace CordovaPackagesBuiler.Services
         public bool CreateConfigConstantJS(ModeDeploiment dmD, string PathDirectory, string PATH_CONFIG_CONSTANT_JS)
         {
             bool result = false;
-
+            _consoleService.ConsoleAddText("Copie et création d'un config.constant.js", 0);
             try
             {
                 _backupFile.MoveFileToBackup(PathDirectory + PATH_CONFIG_CONSTANT_JS, "config.constant.js", PathDirectory);
@@ -43,6 +43,7 @@ namespace CordovaPackagesBuiler.Services
                 ConfigConstantJs.Write(containt);
                 ConfigConstantJs.Close();
 
+                _consoleService.ConsoleAddText("fin de Copie et création d'un config.constant.js", 3);
                 result = true;
             }
             catch (Exception e)
@@ -56,6 +57,7 @@ namespace CordovaPackagesBuiler.Services
         public bool UpdateConfigXml(ModeDeploiment dmD, string PathDirectory, string PATH_CONFIG_XML)
         {
             bool result;
+            _consoleService.ConsoleAddText("écriture du config.xml", 0);
             _backupFile.MoveFileToBackup(PathDirectory + PATH_CONFIG_XML, "config.xml", PathDirectory);
             try
             {
@@ -84,6 +86,7 @@ namespace CordovaPackagesBuiler.Services
                 }
 
                 ConfigXml.Save(Path.Combine(PathDirectory + PATH_CONFIG_XML));
+                _consoleService.ConsoleAddText("fin de l'écriture config.xml", 3);
                 result = true;
             }
             catch (Exception e)
@@ -98,6 +101,7 @@ namespace CordovaPackagesBuiler.Services
 
         public bool UpdateNexworldModuleJs(ModeDeploiment mdd, string PathDirectory, string PATH_NEXWORD_MODULE_JS)
         {
+            _consoleService.ConsoleAddText("Copie et modification du nexworld.module.js", 0);
             bool result = false;
 
             try
@@ -115,6 +119,8 @@ namespace CordovaPackagesBuiler.Services
                     text = text.Replace("return PHONE", "return TABLET");
                 }
                 File.WriteAllText(PathDirectory + PATH_NEXWORD_MODULE_JS, text);
+
+                _consoleService.ConsoleAddText("fin de Copie et modification du nexworld.module.js", 3);
 
                 result = true;
             }
