@@ -113,3 +113,4 @@ C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\obj\Debug\Cordo
 C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\obj\Debug\CordovaPackagesBuiler.exe
 C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\obj\Debug\CordovaPackagesBuiler.pdb
 C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\bin\Debug\Ookii.Dialogs.Wpf.dll
+C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\bin\Debug\Utilitaires\aapt.exe

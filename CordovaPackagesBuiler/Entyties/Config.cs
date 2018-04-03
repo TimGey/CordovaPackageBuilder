@@ -22,6 +22,8 @@ namespace CordovaPackagesBuiler.Entyties
         private const string _path_nexworld_module_js = @"\www\js\nexworld\nexworld.module.js";
         public JObject CONFIG_JSON => _config_json;
         private JObject _config_json;
+        public string Aapt => _aapt;
+        private string _aapt;
 
 
         #endregion
@@ -31,10 +33,12 @@ namespace CordovaPackagesBuiler.Entyties
             // recuperation du config.json
             var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().GetName().CodeBase);
             var pathfile = new Uri(Path.Combine(path, "config", @"config.json")).AbsolutePath;
+            var pathAapt = new Uri(Path.Combine(path, "Utilitaires")).AbsolutePath;
 
             try
             {
                 _config_json = JObject.Parse(File.ReadAllText(pathfile).ToString());
+                _aapt = pathAapt.ToString();
             }
             catch (Exception e)
             {

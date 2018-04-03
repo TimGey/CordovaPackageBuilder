@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("utilitaires/aapt.exe")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("config/config.json")]
 
 

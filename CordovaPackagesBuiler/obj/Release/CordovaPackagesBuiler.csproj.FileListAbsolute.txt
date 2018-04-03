@@ -29,3 +29,5 @@ C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\obj\Release\Cor
 C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\obj\Release\CordovaPackagesBuiler.exe
 C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\obj\Release\CordovaPackagesBuiler.pdb
 C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\obj\Release\CordovaPackagesBuiler.csprojResolveAssemblyReference.cache
+C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\bin\Release\Utilitaires\aapt.exe
+C:\Timothe\Solutions\CordovaPakagesBuilder\CordovaPackagesBuiler\bin\Release\Ookii.Dialogs.Wpf.dll

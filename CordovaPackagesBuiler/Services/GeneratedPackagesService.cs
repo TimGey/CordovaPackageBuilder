@@ -164,7 +164,7 @@ namespace CordovaPackagesBuiler.Services
         private void MoveAndroidPackage(ModeDeploiment mdd, string PathDirectory, string PathPackageDirectory)
         {
             MoveFiledPackage(PathDirectory + mdd.Cpackages[0].Path_appli_generate, PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk");
-            _cmdCordovaService.CMDExecute(@"C:\Program Files (x86)\Android\android-sdk\build-tools\23.0.1", "aapt.exe dump badging "+ PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk", false);
+            _cmdCordovaService.CMDExecute(_config.Aapt, " aapt.exe dump badging "+ PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk", false);
         }
 
 
