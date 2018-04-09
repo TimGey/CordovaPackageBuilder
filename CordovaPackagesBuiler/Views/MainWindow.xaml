@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:controls="clr-namespace:Framework.Presentation.Controls;assembly=Framework.Presentation.Controls"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="700" Width="600" MaxHeight="1000" MaxWidth="800" MinHeight="700" MinWidth="600"
          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -19,61 +20,66 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Label Content="Choisissez la solution"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
-                <Button  Command="{Binding SearchSolution}" Content="Rechercher" RenderTransformOrigin="2.12,0.156" Height="Auto" Margin="3"/>
-                <Label Content="{Binding PathDirectory}"/>
-            </StackPanel>
-            <Label Grid.Row="2" Grid.ColumnSpan="3" Content="cochez le mode de déploiment"/>
-            <CheckBox Grid.Row="3" IsChecked="{Binding Prod}" Content="Prod"/>
-            <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Preprod}" Content="Preprod"/>
-            <Label Grid.Row="4" Grid.ColumnSpan="3" Content="cochez la platform"/>
-            <CheckBox Grid.Row="5" IsChecked="{Binding Android}" Content="Android"/>
-            <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding Windows}" Content="Windows"/>
-            <CheckBox Grid.Row="5" Grid.Column="2" IsChecked="{Binding IOS}" Content="IOS"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="3">
-                <Button Command="{Binding SelectFinalDirectoryPackages}" Content="chemin final" Height="auto" Margin="3"/>
-                <Label Content="{Binding PathFinalDirectory}"/>
-            </StackPanel>
-            <Button Grid.Row="8" Grid.ColumnSpan="3" Content="Générer" Command="{Binding GeneratePackage}" Height="Auto" Margin="1"/>
-
-
-            <Grid Grid.Row="6" Grid.ColumnSpan="3">
+        <controls:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="please wait">
+            <Grid Margin="20">
                 <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="1"  Text="{Binding VersionName}" materialDesign:HintAssist.Hint="1.3.0.0" TextWrapping="Wrap"/>
-                <Label Content="VersioneName"/>
-                <Label Grid.Column="2" Content="VersioneCode"/>
-                <TextBox Grid.Column="3" Text="{Binding VersionCode}" materialDesign:HintAssist.Hint="1300" TextWrapping="Wrap"/>
+
+                <Label Content="Choisissez la solution"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+                    <Button  Command="{Binding SearchSolution}" Content="Rechercher" RenderTransformOrigin="2.12,0.156" Height="Auto" Margin="3"/>
+                    <Label Content="{Binding PathDirectory}"/>
+                </StackPanel>
+                <Label Grid.Row="2" Grid.ColumnSpan="3" Content="cochez le mode de déploiment"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3">
+                    <RadioButton  IsChecked="{Binding Prod}" Content="Prod" GroupName="deploiment" Margin="0,0,100,0"/>
+                    <RadioButton  IsChecked="{Binding Preprod}" Content="Preprod" GroupName="deploiment"/>
+                </StackPanel>
+                <Label Grid.Row="4" Grid.ColumnSpan="3" Content="cochez la platform"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="3">
+                    <RadioButton Grid.Row="5" IsChecked="{Binding Android}" Content="Android" GroupName="platform" Margin="0,0,100,0"/>
+                    <RadioButton Grid.Row="5" IsChecked="{Binding Windows}" Content="Windows" GroupName="platform" Margin="0,0,100,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="3">
+                    <Button Command="{Binding SelectFinalDirectoryPackages}" Content="chemin final" Height="auto" Margin="3"/>
+                    <Label Content="{Binding PathFinalDirectory}"/>
+                </StackPanel>
+                <Button Grid.Row="8" Grid.ColumnSpan="3" Content="Générer" Command="{Binding GeneratePackage}" Height="Auto" Margin="1"/>
+
+
+                <Grid Grid.Row="6" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="1"  Text="{Binding VersionName}" materialDesign:HintAssist.Hint="1.3.0.0" TextWrapping="Wrap"/>
+                    <Label Content="VersioneName"/>
+                    <Label Grid.Column="2" Content="VersioneCode"/>
+                    <TextBox Grid.Column="3" Text="{Binding VersionCode}" materialDesign:HintAssist.Hint="1300" TextWrapping="Wrap"/>
+                </Grid>
+
+
             </Grid>
-
-
-        </Grid>
+        </controls:BusyIndicator>
         <TextBox Grid.Row="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Background="Black" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding AffichageConsole}" VerticalAlignment="Stretch"  />
 
     </Grid>

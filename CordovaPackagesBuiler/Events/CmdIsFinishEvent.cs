@@ -7,7 +7,7 @@ using Prism.Events;
 
 namespace CordovaPackagesBuiler.Events
 {
-    class ThreadFinishEvent: PubSubEvent
+    class CmdIsFinishEvent: PubSubEvent
     {
     }
 }

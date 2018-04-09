@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CordovaPackagesBuiler.Events
 {
-    class FileIsFindEvent: PubSubEvent<bool>
+    class IsBuildableEvent: PubSubEvent<bool>
     {
     }
 }

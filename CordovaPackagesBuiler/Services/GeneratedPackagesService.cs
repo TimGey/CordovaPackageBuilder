@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using CordovaPackagesBuiler.Entyties;
 using Prism.Events;
 using CordovaPackagesBuiler.Events;
-
+using System.Threading;
 
 namespace CordovaPackagesBuiler.Services
 {
@@ -22,6 +22,7 @@ namespace CordovaPackagesBuiler.Services
         private readonly IConfigurationService _configurationService;
         private readonly ISelectPathDirectoryService _selectPathDirectoryService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly ILoggerService _loggerService;
         private Config _config;
         private string _pathdirectory;
         private string _pathPackageDirectory;
@@ -37,7 +38,8 @@ namespace CordovaPackagesBuiler.Services
                                         ICmdCordovaService cmdCordovaService,
                                         IConfigurationService configurationService,
                                         ISelectPathDirectoryService selectPathDirectoryService,
-                                        IEventAggregator eventAggregator)
+                                        IEventAggregator eventAggregator,
+                                        ILoggerService loggerService)
         {
             _modeDeploimentService = modeDeploimentService;
             _backupFile = backupFile;
@@ -47,9 +49,10 @@ namespace CordovaPackagesBuiler.Services
             _configurationService = configurationService;
             _selectPathDirectoryService = selectPathDirectoryService;
             _eventAggregator = eventAggregator;
+            _loggerService = loggerService;
             _config = _configurationService.GetConfig();
-            if (!_eventAggregator.GetEvent<ThreadFinishEvent>().Contains(OnFinishRecevied))
-                _eventAggregator.GetEvent<ThreadFinishEvent>().Subscribe(OnFinishRecevied, false);
+            if (!_eventAggregator.GetEvent<CmdIsFinishEvent>().Contains(OnFinishRecevied))
+                _eventAggregator.GetEvent<CmdIsFinishEvent>().Subscribe(OnFinishRecevied, false);
         }
         #endregion
 
@@ -60,12 +63,26 @@ namespace CordovaPackagesBuiler.Services
             OnCmdFinish();
         }
 
+        private void OnCmdFinish()
+        {
+            //--restauration des fichiers d'oigine--//
+            RestaurationOriginFiles(_pathdirectory);
+
+            if (_pathPackageDirectory != "Chemin de destination des packages générés")
+            {
+                MovePackage(_mdDplt, _pathdirectory, _pathPackageDirectory);
+            }
+
+        }
         #endregion
 
         public void StartGeneratedPakage(string plateform, string deploiment, string VersionCode, string VersionName, string PathDirectory, string PathPackageDirectory)
         {
+            //on block le bouton pour générer le package
+            _eventAggregator.GetEvent<IsBuildableEvent>().Publish(true);
             _pathdirectory = PathDirectory;
             _pathPackageDirectory = PathPackageDirectory;
+            _loggerService.SetPathLog(PathPackageDirectory);
 
             //--vérification des fichers si lecture seul--//
             if (!ReadOnlyFile(PathDirectory, new string[] { _config.PATH_CONFIG_XML, _config.PATH_CONFIG_CONSTANT_JS, _config.PATH_NEXWORD_MODULE_JS }))
@@ -82,25 +99,13 @@ namespace CordovaPackagesBuiler.Services
                     //--lancement de la cmd pour build le package--//
                     _cmdCordovaService.CMDExecute(PathDirectory, MdDplt.Cpackages[0].CordovaCmd, true);
 
-                  
                 }
 
             }
 
         }
 
-        private void OnCmdFinish()
-        {
-            //--restauration des fichiers d'oigine--//
-            RestaurationOriginFiles(_pathdirectory);
 
-            if (_pathPackageDirectory != "Chemin de destination des packages générés")
-            {
-
-                MovePackage(_mdDplt, _pathdirectory, _pathPackageDirectory);
-            }
-
-        }
 
 
         private bool ReadOnlyFile(string pathDirectory, string[] tpathFiles)
@@ -148,13 +153,20 @@ namespace CordovaPackagesBuiler.Services
             if (mdd.Cpackages[0].NamePlatform.ToLower() == "android")
             {
                 MoveAndroidPackage(mdd, PathDirectory, pathPackage);
+                Thread.Sleep(3000);
+                _loggerService.ClosingLogger();
+                File.Move(_pathPackageDirectory + @"\log\log.txt", pathPackage + @"\log-" + DateTime.Now.Second + ".txt");
+
             }
             else
             if (mdd.Cpackages[0].NamePlatform.ToLower() == "windows")
             {
                 MoveWindowsPackage(mdd, PathDirectory, pathPackage);
+                _loggerService.ClosingLogger();
+                File.Move(_pathPackageDirectory + @"\log\log.txt", pathPackage + @"\log-"+DateTime.Now.Second+".txt");
             }
 
+            _eventAggregator.GetEvent<IsBuildableEvent>().Publish(false);
         }
         #endregion
 
@@ -164,7 +176,7 @@ namespace CordovaPackagesBuiler.Services
         private void MoveAndroidPackage(ModeDeploiment mdd, string PathDirectory, string PathPackageDirectory)
         {
             MoveFiledPackage(PathDirectory + mdd.Cpackages[0].Path_appli_generate, PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk");
-            _cmdCordovaService.CMDExecute(_config.Aapt, " aapt.exe dump badging "+ PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk", false);
+            _cmdCordovaService.CMDExecute(_config.Aapt, " aapt.exe dump badging " + PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk", false);
         }
 
 
@@ -185,10 +197,12 @@ namespace CordovaPackagesBuiler.Services
             {
                 File.Move(PathFileStart, PathFileEnd);
                 _consoleService.ConsoleAddText("Fichier déplacer: " + PathFileEnd, 3);
+                _loggerService.AddLog(3, "Fichier déplacer: " + PathFileEnd);
             }
             catch (IOException ioe)
             {
                 _consoleService.ConsoleAddText("MoveFiledPackage==>" + ioe.ToString(), 2);
+                _loggerService.AddLog(2, "MoveFiledPackage==>" + ioe.ToString());
             }
 
         }
@@ -200,10 +214,12 @@ namespace CordovaPackagesBuiler.Services
                 MoveFiledPackage(PathFileStart, PathFileEnd);
                 Directory.Move(PathDiectoryStart, PathDirectoryEnd);
                 _consoleService.ConsoleAddText("dossier déplacer: " + PathDirectoryEnd, 3);
+                _loggerService.AddLog(3, "dossier déplacer: " + PathDirectoryEnd);
             }
             catch (IOException ioe)
             {
                 _consoleService.ConsoleAddText("MoveDirectoryAndFilePackage==>" + ioe.ToString(), 2);
+                _loggerService.AddLog(2, "MoveDirectoryAndFilePackage==>" + ioe.ToString());
             }
         }
         #endregion

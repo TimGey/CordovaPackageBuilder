@@ -36,6 +36,8 @@ namespace CordovaPackagesBuiler
             Container.RegisterType<ISelectPathDirectoryService, SelectPathDiectoryService>();
             Container.RegisterType<IModeDeploimentService, ModeDeploimentService>();
             Container.RegisterType<IGeneratedPackageService, GeneratedPackagesService>();
+            Container.RegisterType<ILoggerService, LoggerService>();
+            Container.RegisterType<IControleInputService, ControleInputService>();
         }
     }
 }

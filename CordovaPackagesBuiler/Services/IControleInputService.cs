@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CordovaPackagesBuiler.Services
 {
-  public  interface ISelectPathDirectoryService
+  public  interface IControleInputService
     {
-        string SelectPath(string[] tPathFile);
-        string SelectFolder();
+        bool IsNumberVersion(string input);
+        bool IsNumberCode(string input);
     }
 }

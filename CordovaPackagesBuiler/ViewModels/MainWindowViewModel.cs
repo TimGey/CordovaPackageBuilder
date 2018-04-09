@@ -1,14 +1,8 @@
 ﻿using CordovaPackagesBuiler.Entyties;
 using CordovaPackagesBuiler.Services;
-using Microsoft.Win32;
-using Newtonsoft.Json.Linq;
 using Prism.Commands;
 using Prism.Mvvm;
-using System;
-using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Xml.Linq;
 using Prism.Events;
 using CordovaPackagesBuiler.Events;
 using System.Text;
@@ -108,14 +102,6 @@ namespace CordovaPackagesBuiler.ViewModels
         }
         private bool _windows = false;
 
-        public bool IOS
-        {
-            get { return _ios; }
-            set { SetProperty(ref _ios, value); }
-        }
-        private bool _ios = false;
-
-
         public ModeDeploiment Mdplt
         {
             get { return _mdptl; }
@@ -138,37 +124,39 @@ namespace CordovaPackagesBuiler.ViewModels
         }
         private bool _filesfind;
 
+        public bool IsBusy
+        {
+            get { return _isbusy; }
+            set { SetProperty(ref _isbusy, value); }
+        }
+        private bool _isbusy = false;
+
+
         private string[] Tpaths;
 
         private readonly IConfigurationService _configurationService;
         private readonly IConsoleService _consoleService;
-        private readonly IBackupFile _backupFile;
         private readonly IEventAggregator _eventAggregator;
-        private readonly ICmdCordovaService _cmdCordovaService;
         private readonly ISelectPathDirectoryService _selectPathDirectoryService;
-        private readonly IUpdateFileService _updateFileService;
         private readonly IGeneratedPackageService _generatedPackageService;
+        private readonly IControleInputService _controleInputService;
         #endregion
 
         #region Constructor
         public MainWindowViewModel(
             IConfigurationService configuationService,
             IConsoleService consoleService,
-            IBackupFile backupFile,
             IEventAggregator eventAggregator,
-            ICmdCordovaService cmdCordovaService,
             ISelectPathDirectoryService selectPathDirectoryService,
-            IUpdateFileService updateFileService,
-            IGeneratedPackageService generatedPackageService)
+            IGeneratedPackageService generatedPackageService,
+            IControleInputService controleInputService)
         {
             _configurationService = configuationService;
             _consoleService = consoleService;
-            _backupFile = backupFile;
             _eventAggregator = eventAggregator;
-            _cmdCordovaService = cmdCordovaService;
             _selectPathDirectoryService = selectPathDirectoryService;
-            _updateFileService = updateFileService;
             _generatedPackageService = generatedPackageService;
+            _controleInputService = controleInputService;
             Config = _configurationService.GetConfig();
             PathDirectory = "Chemin de la solution";
             PathFinalDirectory = "Chemin de destination des packages générés";
@@ -178,10 +166,10 @@ namespace CordovaPackagesBuiler.ViewModels
                 _eventAggregator.GetEvent<MessageEvent>().Subscribe(OnMessageRecevied, false);
             if (!_eventAggregator.GetEvent<ClearConsoleEvent>().Contains(OnClearConsole))
                 _eventAggregator.GetEvent<ClearConsoleEvent>().Subscribe(OnClearConsole, false);
-            if (!_eventAggregator.GetEvent<PathEvent>().Contains(OnPathRecevied))
-                _eventAggregator.GetEvent<PathEvent>().Subscribe(OnPathRecevied, false);
-            if (!_eventAggregator.GetEvent<FileIsFindEvent>().Contains(OnFileFind))
-                _eventAggregator.GetEvent<FileIsFindEvent>().Subscribe(OnFileFind, false);
+            if (!_eventAggregator.GetEvent<PathFindEvent>().Contains(OnFileFind))
+                _eventAggregator.GetEvent<PathFindEvent>().Subscribe(OnFileFind, false);
+            if (!_eventAggregator.GetEvent<IsBuildableEvent>().Contains(OnBusyable))
+                _eventAggregator.GetEvent<IsBuildableEvent>().Subscribe(OnBusyable, false);
 
         }
         #endregion
@@ -199,14 +187,14 @@ namespace CordovaPackagesBuiler.ViewModels
             strb.Clear();
         }
 
-        private void OnPathRecevied(string path)
-        {
-            PathDirectory = path;
-        }
-
         private void OnFileFind(bool find)
         {
             FilesFind = find;
+        }
+
+        private void OnBusyable(bool busy)
+        {
+            IsBusy = busy;
         }
 
         #endregion
@@ -218,8 +206,7 @@ namespace CordovaPackagesBuiler.ViewModels
 
         private void selectpath()
         {
-            _selectPathDirectoryService.SelectPath(Tpaths);
-
+            PathDirectory = _selectPathDirectoryService.SelectPath(Tpaths);
         }
         #endregion
 
@@ -245,13 +232,6 @@ namespace CordovaPackagesBuiler.ViewModels
             #region ControleSurface
             //------choix du mode de déploiment------//
             var deployment = "";
-
-            if (Preprod && Prod)
-            {
-                deployment = "";
-                _consoleService.ConsoleAddText("!!Choisissez UN mode de déploiment!!", 1);
-            }
-            else
             if (Prod)
             {
                 deployment = "prod";
@@ -271,12 +251,6 @@ namespace CordovaPackagesBuiler.ViewModels
             if (deployment != "")
             {
                 var platform = "";
-                if (Android && Windows)
-                {
-                    platform = "";
-                    _consoleService.ConsoleAddText("UNE platform pour le moment (trop compliqué 2!!!)", 1);
-                }
-                else
                 if (Android)
                 {
                     platform = "android";
@@ -287,21 +261,19 @@ namespace CordovaPackagesBuiler.ViewModels
                     platform = "windows";
                 }
                 else
-                if (IOS)
-                {
-                    platform = "";
-                    _consoleService.ConsoleAddText("IOS pas prit en charge pour le moment (trop compliqué!!!)", 1);
-                }
-                else
                 {
                     _consoleService.ConsoleAddText("aucun platform cochée", 1);
                 }
                 //------fin du choix de la platform------//
                 #endregion
                 //-----appel au service------//
-                if (platform != "" )
+                if (platform != "")
                 {
-                    _generatedPackageService.StartGeneratedPakage(platform, deployment, VersionCode, VersionName, PathDirectory, PathFinalDirectory);
+                    if (_controleInputService.IsNumberCode(VersionName) && _controleInputService.IsNumberVersion(_versionCode))
+                    {
+                        _generatedPackageService.StartGeneratedPakage(platform, deployment, VersionCode, VersionName, PathDirectory, PathFinalDirectory);
+                    }
+
 
                 }
 

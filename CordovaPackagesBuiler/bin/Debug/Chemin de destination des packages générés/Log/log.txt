@@ -1,0 +1,108 @@
+2018-04-06 16:47:31.175 +02:00 [INF] ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
+2018-04-06 16:47:31.185 +02:00 [INF] JAVA_HOME=C:\Program Files\java\jdk1.7.0_79
+2018-04-06 16:47:31.191 +02:00 [INF] Reading build config file: C:\Timothe\Solutions\Foncia\Foncia_MobileGestionVisite_App\build.json
+2018-04-06 16:47:31.191 +02:00 [INF] Reading the keystore from: C:\Timothe\Solutions\Foncia\Foncia_MobileGestionVisite_App\android.jks
+2018-04-06 16:47:34.706 +02:00 [INF] Starting a new Gradle Daemon for this build (subsequent builds will be faster).
+2018-04-06 16:47:41.613 +02:00 [INF] Incremental java compilation is an incubating feature.
+2018-04-06 16:47:43.349 +02:00 [INF] :preBuild UP-TO-DATE
+2018-04-06 16:47:43.363 +02:00 [INF] :preReleaseBuild UP-TO-DATE
+2018-04-06 16:47:43.364 +02:00 [INF] :checkReleaseManifest
+2018-04-06 16:47:43.368 +02:00 [INF] :CordovaLib:preBuild UP-TO-DATE
+2018-04-06 16:47:43.390 +02:00 [INF] :CordovaLib:preReleaseBuild UP-TO-DATE
+2018-04-06 16:47:43.395 +02:00 [INF] :CordovaLib:compileReleaseNdk UP-TO-DATE
+2018-04-06 16:47:43.400 +02:00 [INF] :CordovaLib:compileLint
+2018-04-06 16:47:43.417 +02:00 [INF] :CordovaLib:copyReleaseLint UP-TO-DATE
+2018-04-06 16:47:43.458 +02:00 [INF] :CordovaLib:mergeReleaseProguardFiles UP-TO-DATE
+2018-04-06 16:47:43.468 +02:00 [INF] :CordovaLib:packageReleaseRenderscript UP-TO-DATE
+2018-04-06 16:47:43.471 +02:00 [INF] :CordovaLib:checkReleaseManifest
+2018-04-06 16:47:43.473 +02:00 [INF] :CordovaLib:prepareReleaseDependencies
+2018-04-06 16:47:43.528 +02:00 [INF] :CordovaLib:compileReleaseRenderscript UP-TO-DATE
+2018-04-06 16:47:43.541 +02:00 [INF] :CordovaLib:generateReleaseResValues UP-TO-DATE
+2018-04-06 16:47:43.542 +02:00 [INF] :CordovaLib:generateReleaseResources UP-TO-DATE
+2018-04-06 16:47:43.556 +02:00 [INF] :CordovaLib:packageReleaseResources UP-TO-DATE
+2018-04-06 16:47:43.574 +02:00 [INF] :CordovaLib:compileReleaseAidl UP-TO-DATE
+2018-04-06 16:47:43.600 +02:00 [INF] :CordovaLib:generateReleaseBuildConfig UP-TO-DATE
+2018-04-06 16:47:43.610 +02:00 [INF] :CordovaLib:mergeReleaseShaders UP-TO-DATE
+2018-04-06 16:47:43.623 +02:00 [INF] :CordovaLib:compileReleaseShaders UP-TO-DATE
+2018-04-06 16:47:43.624 +02:00 [INF] :CordovaLib:generateReleaseAssets UP-TO-DATE
+2018-04-06 16:47:43.630 +02:00 [INF] :CordovaLib:mergeReleaseAssets UP-TO-DATE
+2018-04-06 16:47:43.640 +02:00 [INF] :CordovaLib:processReleaseManifest UP-TO-DATE
+2018-04-06 16:47:43.659 +02:00 [INF] :CordovaLib:processReleaseResources UP-TO-DATE
+2018-04-06 16:47:43.660 +02:00 [INF] :CordovaLib:generateReleaseSources UP-TO-DATE
+2018-04-06 16:47:43.674 +02:00 [INF] :CordovaLib:incrementalReleaseJavaCompilationSafeguard UP-TO-DATE
+2018-04-06 16:47:43.720 +02:00 [INF] :CordovaLib:compileReleaseJavaWithJavac UP-TO-DATE
+2018-04-06 16:47:43.727 +02:00 [INF] :CordovaLib:processReleaseJavaRes UP-TO-DATE
+2018-04-06 16:47:43.737 +02:00 [INF] :CordovaLib:transformResourcesWithMergeJavaResForRelease UP-TO-DATE
+2018-04-06 16:47:43.756 +02:00 [INF] :CordovaLib:transformClassesAndResourcesWithSyncLibJarsForRelease UP-TO-DATE
+2018-04-06 16:47:43.765 +02:00 [INF] :CordovaLib:mergeReleaseJniLibFolders UP-TO-DATE
+2018-04-06 16:47:43.771 +02:00 [INF] :CordovaLib:transformNative_libsWithMergeJniLibsForRelease UP-TO-DATE
+2018-04-06 16:47:43.773 +02:00 [INF] :CordovaLib:transformNative_libsWithSyncJniLibsForRelease UP-TO-DATE
+2018-04-06 16:47:43.779 +02:00 [INF] :CordovaLib:bundleRelease UP-TO-DATE
+2018-04-06 16:47:43.784 +02:00 [INF] :prepareAndroidCordovaLibUnspecifiedReleaseLibrary UP-TO-DATE
+2018-04-06 16:47:43.785 +02:00 [INF] :preDebugBuild UP-TO-DATE
+2018-04-06 16:47:43.785 +02:00 [INF] :CordovaLib:preDebugBuild UP-TO-DATE
+2018-04-06 16:47:43.787 +02:00 [INF] :CordovaLib:compileDebugNdk UP-TO-DATE
+2018-04-06 16:47:43.787 +02:00 [INF] :CordovaLib:copyDebugLint UP-TO-DATE
+2018-04-06 16:47:43.791 +02:00 [INF] :CordovaLib:mergeDebugProguardFiles UP-TO-DATE
+2018-04-06 16:47:43.796 +02:00 [INF] :CordovaLib:packageDebugRenderscript UP-TO-DATE
+2018-04-06 16:47:43.798 +02:00 [INF] :CordovaLib:checkDebugManifest
+2018-04-06 16:47:43.799 +02:00 [INF] :CordovaLib:prepareDebugDependencies
+2018-04-06 16:47:43.815 +02:00 [INF] :CordovaLib:compileDebugRenderscript UP-TO-DATE
+2018-04-06 16:47:43.818 +02:00 [INF] :CordovaLib:generateDebugResValues UP-TO-DATE
+2018-04-06 16:47:43.818 +02:00 [INF] :CordovaLib:generateDebugResources UP-TO-DATE
+2018-04-06 16:47:43.829 +02:00 [INF] :CordovaLib:packageDebugResources UP-TO-DATE
+2018-04-06 16:47:43.840 +02:00 [INF] :CordovaLib:compileDebugAidl UP-TO-DATE
+2018-04-06 16:47:43.848 +02:00 [INF] :CordovaLib:generateDebugBuildConfig UP-TO-DATE
+2018-04-06 16:47:43.862 +02:00 [INF] :CordovaLib:mergeDebugShaders UP-TO-DATE
+2018-04-06 16:47:43.867 +02:00 [INF] :CordovaLib:compileDebugShaders UP-TO-DATE
+2018-04-06 16:47:43.873 +02:00 [INF] :CordovaLib:generateDebugAssets UP-TO-DATE
+2018-04-06 16:47:43.880 +02:00 [INF] :CordovaLib:mergeDebugAssets UP-TO-DATE
+2018-04-06 16:47:43.896 +02:00 [INF] :CordovaLib:processDebugManifest UP-TO-DATE
+2018-04-06 16:47:43.908 +02:00 [INF] :CordovaLib:processDebugResources UP-TO-DATE
+2018-04-06 16:47:43.909 +02:00 [INF] :CordovaLib:generateDebugSources UP-TO-DATE
+2018-04-06 16:47:43.914 +02:00 [INF] :CordovaLib:incrementalDebugJavaCompilationSafeguard UP-TO-DATE
+2018-04-06 16:47:43.960 +02:00 [INF] :CordovaLib:compileDebugJavaWithJavac UP-TO-DATE
+2018-04-06 16:47:43.971 +02:00 [INF] :CordovaLib:processDebugJavaRes UP-TO-DATE
+2018-04-06 16:47:43.978 +02:00 [INF] :CordovaLib:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+2018-04-06 16:47:43.984 +02:00 [INF] :CordovaLib:transformClassesAndResourcesWithSyncLibJarsForDebug UP-TO-DATE
+2018-04-06 16:47:43.991 +02:00 [INF] :CordovaLib:mergeDebugJniLibFolders UP-TO-DATE
+2018-04-06 16:47:44.000 +02:00 [INF] :CordovaLib:transformNative_libsWithMergeJniLibsForDebug UP-TO-DATE
+2018-04-06 16:47:44.003 +02:00 [INF] :CordovaLib:transformNative_libsWithSyncJniLibsForDebug UP-TO-DATE
+2018-04-06 16:47:44.008 +02:00 [INF] :CordovaLib:bundleDebug UP-TO-DATE
+2018-04-06 16:47:44.022 +02:00 [INF] :prepareComAndroidSupportSupportV42411Library UP-TO-DATE
+2018-04-06 16:47:44.024 +02:00 [INF] :prepareReleaseDependencies
+2018-04-06 16:47:44.056 +02:00 [INF] :compileReleaseAidl UP-TO-DATE
+2018-04-06 16:47:44.110 +02:00 [INF] :compileReleaseRenderscript UP-TO-DATE
+2018-04-06 16:47:44.123 +02:00 [INF] :generateReleaseBuildConfig UP-TO-DATE
+2018-04-06 16:47:44.128 +02:00 [INF] :mergeReleaseShaders UP-TO-DATE
+2018-04-06 16:47:44.135 +02:00 [INF] :compileReleaseShaders UP-TO-DATE
+2018-04-06 16:47:44.138 +02:00 [INF] :generateReleaseAssets UP-TO-DATE
+2018-04-06 16:47:44.311 +02:00 [INF] :mergeReleaseAssets UP-TO-DATE
+2018-04-06 16:47:44.314 +02:00 [INF] :generateReleaseResValues UP-TO-DATE
+2018-04-06 16:47:44.315 +02:00 [INF] :generateReleaseResources UP-TO-DATE
+2018-04-06 16:47:44.370 +02:00 [INF] :mergeReleaseResources UP-TO-DATE
+2018-04-06 16:47:44.381 +02:00 [INF] :processReleaseManifest UP-TO-DATE
+2018-04-06 16:47:44.404 +02:00 [INF] :processReleaseResources UP-TO-DATE
+2018-04-06 16:47:44.406 +02:00 [INF] :generateReleaseSources UP-TO-DATE
+2018-04-06 16:47:44.414 +02:00 [INF] :incrementalReleaseJavaCompilationSafeguard UP-TO-DATE
+2018-04-06 16:47:44.476 +02:00 [INF] :compileReleaseJavaWithJavac UP-TO-DATE
+2018-04-06 16:47:44.479 +02:00 [INF] :compileReleaseNdk UP-TO-DATE
+2018-04-06 16:47:44.480 +02:00 [INF] :compileReleaseSources UP-TO-DATE
+2018-04-06 16:47:48.877 +02:00 [INF] :lintVitalRelease
+2018-04-06 16:47:48.922 +02:00 [INF] :prePackageMarkerForRelease
+2018-04-06 16:47:49.005 +02:00 [INF] :transformClassesWithDexForRelease UP-TO-DATE
+2018-04-06 16:47:49.022 +02:00 [INF] :mergeReleaseJniLibFolders UP-TO-DATE
+2018-04-06 16:47:49.044 +02:00 [INF] :transformNative_libsWithMergeJniLibsForRelease UP-TO-DATE
+2018-04-06 16:47:49.084 +02:00 [INF] :processReleaseJavaRes UP-TO-DATE
+2018-04-06 16:47:49.084 +02:00 [INF] :transformResourcesWithMergeJavaResForRelease UP-TO-DATE
+2018-04-06 16:47:49.084 +02:00 [INF] :validateReleaseSigning
+2018-04-06 16:47:49.088 +02:00 [INF] :packageRelease UP-TO-DATE
+2018-04-06 16:47:49.092 +02:00 [INF] :zipalignRelease UP-TO-DATE
+2018-04-06 16:47:49.092 +02:00 [INF] :assembleRelease
+2018-04-06 16:47:49.093 +02:00 [INF] :cdvBuildRelease
+2018-04-06 16:47:49.095 +02:00 [INF] 
+2018-04-06 16:47:49.095 +02:00 [INF] BUILD SUCCESSFUL
+2018-04-06 16:47:49.095 +02:00 [INF] 
+2018-04-06 16:47:49.095 +02:00 [INF] Total time: 17.701 secs
+2018-04-06 16:47:49.909 +02:00 [INF] Built the following apk(s): 
+2018-04-06 16:47:49.910 +02:00 [INF] 	C:/Timothe/Solutions/Foncia/Foncia_MobileGestionVisite_App/platforms/android/build/outputs/apk/android-release.apk

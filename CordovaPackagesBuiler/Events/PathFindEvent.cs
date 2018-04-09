@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CordovaPackagesBuiler.Events
 {
-    class PathEvent: PubSubEvent<string>
-    {
+    class PathFindEvent : PubSubEvent<bool>
+    { 
     }
 }

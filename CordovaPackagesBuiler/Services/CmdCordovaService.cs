@@ -16,11 +16,13 @@ namespace CordovaPackagesBuiler.Services
     {
         private readonly IConsoleService _consoleService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly ILoggerService _loggerService;
 
-        public CmdCordovaService(IConsoleService consoleService, IEventAggregator eventAggregator)
+        public CmdCordovaService(IConsoleService consoleService, IEventAggregator eventAggregator, ILoggerService loggerService)
         {
             _consoleService = consoleService;
             _eventAggregator = eventAggregator;
+            _loggerService = loggerService;
         }
 
         public void CMDExecute(string DirectoryPath, string CordovaCmd, bool sendFinish)
@@ -28,38 +30,48 @@ namespace CordovaPackagesBuiler.Services
 
             var cmd = new Process();
             cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.Arguments = "/C "+ CordovaCmd;
+            cmd.StartInfo.Arguments = "/C " + CordovaCmd;
             cmd.StartInfo.UseShellExecute = false;
             cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.RedirectStandardError = true;
             cmd.StartInfo.WorkingDirectory = DirectoryPath;
+            cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            cmd.StartInfo.CreateNoWindow = true;
             cmd.Start();
-            
-           
-            Thread thread = new Thread(()=> ReaderHandler(cmd.StandardOutput, sendFinish));
+
+            Thread therror = new Thread(() => ReaderHandler(cmd ,cmd.StandardError, false));
+            therror.Start();
+
+            Thread thread = new Thread(() => ReaderHandler(cmd, cmd.StandardOutput, sendFinish));
             thread.Start();
-         
+
         }
 
-        private void ReaderHandler(StreamReader strReader, bool sendFinish)
+        private void ReaderHandler(Process p ,StreamReader strReader, bool sendFinish)
         {
             try
             {
                 string line = "";
-                while((line= strReader.ReadLine()) != null)
+                while ((line = strReader.ReadLine()) != null)
                 {
                     _consoleService.ConsoleAddText("Console===>" + line, 0);
+                    _loggerService.AddLog(0, line);
+
                 }
                 if (sendFinish)
                 {
-                    _eventAggregator.GetEvent<ThreadFinishEvent>().Publish();
+                    _eventAggregator.GetEvent<CmdIsFinishEvent>().Publish();
                 }
             }
-            catch(IOException ioe)
+            catch (IOException ioe)
             {
                 _consoleService.ConsoleAddText("ReaderHandler---->" + ioe.ToString(), 2);
+                _loggerService.AddLog(2, "ReaderHandler---- > " + ioe.ToString());
             }
+
+            p.Close();
         }
-      
-       
+
+
     }
 }

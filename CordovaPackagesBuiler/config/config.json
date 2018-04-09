@@ -5,7 +5,7 @@
       "appli_name": "Ma visite d\\'immeubles",
       "package_name": "fr.foncia.mobile.gestionvisite",
       "deviceType": "PHONE",
-      "cordova_cmd": "cordova  build android --release",
+      "cordova_cmd": "cordova build android --release",
       "path_appli_generate": "\\platforms\\android\\build\\outputs\\apk\\android-release.apk"
     },
     "windows": {
@@ -14,13 +14,6 @@
       "deviceType": "TABLET",
       "cordova_cmd": "cordova  build windows --release --arch=x86 -- --appx=8.1-win",
       "path_appli_generate": "\\platforms\\windows\\AppPackages\\CordovaApp.Windows_"
-    },
-    "ios": {
-      "appli_name": "Ma visite d'immeubles",
-      "package_name": "Fonci.MobileGestionVisites.App",
-      "deviceType": [ "PHONE", "TABLET" ],
-      "cordova_cmd": "NOOOON FAIS PAS CAAAAAAAA!!!!!!!",
-      "path_appli_generate": ""
     }
   },
   "preprod": {
@@ -39,13 +32,6 @@
       "deviceType": "TABLET",
       "cordova_cmd": "cordova  build windows --release --arch=x86 -- --appx=8.1-win",
       "path_appli_generate": "\\platforms\\windows\\AppPackages\\CordovaApp.Windows_"
-    },
-    "ios": {
-      "appli_name": "Ma visite d'immeubles",
-      "package_name": "Fonci.MobileGestionVisites.App",
-      "deviceType": [ "PHONE", "TABLET" ],
-      "cordova_cmd": "NOOOON FAIS PAS CAAAAAAAA!!!!!!!",
-      "path_appli_generate": ""
     }
   }
 }

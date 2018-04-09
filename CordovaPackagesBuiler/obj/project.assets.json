@@ -88,6 +88,32 @@
           "lib/net45/System.Windows.Interactivity.dll": {}
         }
       },
+      "Serilog/2.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        }
+      },
       "Unity/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -190,6 +216,32 @@
         "runtime": {
           "lib/net45/Prism.Wpf.dll": {},
           "lib/net45/System.Windows.Interactivity.dll": {}
+        }
+      },
+      "Serilog/2.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
         }
       },
       "Unity/4.0.1": {
@@ -296,6 +348,32 @@
           "lib/net45/System.Windows.Interactivity.dll": {}
         }
       },
+      "Serilog/2.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        }
+      },
       "Unity/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -398,6 +476,32 @@
         "runtime": {
           "lib/net45/Prism.Wpf.dll": {},
           "lib/net45/System.Windows.Interactivity.dll": {}
+        }
+      },
+      "Serilog/2.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
         }
       },
       "Unity/4.0.1": {
@@ -677,6 +781,36 @@
         "prism.wpf.nuspec"
       ]
     },
+    "Serilog/2.6.0": {
+      "sha512": "hxHgHkza8ZowrvQ+jTEF2ypDWGP8NbNtxPQIx7ogTAM9fisDFo2+6kOaxCkleZLO8hiyq0kW5tDLkgm/dbj9uA==",
+      "type": "package",
+      "path": "serilog/2.6.0",
+      "files": [
+        "lib/net45/Serilog.dll",
+        "lib/net45/Serilog.xml",
+        "lib/net46/Serilog.dll",
+        "lib/net46/Serilog.xml",
+        "lib/netstandard1.0/Serilog.dll",
+        "lib/netstandard1.0/Serilog.xml",
+        "lib/netstandard1.3/Serilog.dll",
+        "lib/netstandard1.3/Serilog.xml",
+        "serilog.2.6.0.nupkg.sha512",
+        "serilog.nuspec"
+      ]
+    },
+    "Serilog.Sinks.File/4.0.0": {
+      "sha512": "vBj43RkAbeP1dzoPFR2+LfV5GevDRPDq6265JJBv223lMvT9rfdwe/S/I9ow7aZSLYKfw4qPDw6NW8YwjbDbvg==",
+      "type": "package",
+      "path": "serilog.sinks.file/4.0.0",
+      "files": [
+        "lib/net45/Serilog.Sinks.File.dll",
+        "lib/net45/Serilog.Sinks.File.xml",
+        "lib/netstandard1.3/Serilog.Sinks.File.dll",
+        "lib/netstandard1.3/Serilog.Sinks.File.xml",
+        "serilog.sinks.file.4.0.0.nupkg.sha512",
+        "serilog.sinks.file.nuspec"
+      ]
+    },
     "Unity/4.0.1": {
       "sha512": "FQxLlryE47Y5xY7wJfToUrwtyLsgNJK0jK6sPfNC3YUsjzSX7ILXLA4EX8zVxFPOaIMTJBXRIKrnQ/lsECLufg==",
       "type": "package",
@@ -710,7 +844,9 @@
       "MaterialDesignThemes >= 2.4.0.1044",
       "Newtonsoft.Json >= 11.0.1",
       "Ookii.Dialogs >= 1.0.0",
-      "Prism.Unity >= 6.3.0"
+      "Prism.Unity >= 6.3.0",
+      "Serilog >= 2.6.0",
+      "Serilog.Sinks.File >= 4.0.0"
     ]
   },
   "packageFolders": {
@@ -720,11 +856,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Timothe\\Solutions\\CordovaPakagesBuilder\\CordovaPackagesBuiler\\CordovaPackagesBuiler.csproj",
+      "projectUniqueName": "C:\\Timothe\\Solutions\\Foncia\\Tools\\CordovaPakagesBuilder\\CordovaPackagesBuiler\\CordovaPackagesBuiler.csproj",
       "projectName": "CordovaPackagesBuiler",
-      "projectPath": "C:\\Timothe\\Solutions\\CordovaPakagesBuilder\\CordovaPackagesBuiler\\CordovaPackagesBuiler.csproj",
+      "projectPath": "C:\\Timothe\\Solutions\\Foncia\\Tools\\CordovaPakagesBuilder\\CordovaPackagesBuiler\\CordovaPackagesBuiler.csproj",
       "packagesPath": "C:\\Users\\timothe.geyre\\.nuget\\packages\\",
-      "outputPath": "C:\\Timothe\\Solutions\\CordovaPakagesBuilder\\CordovaPackagesBuiler\\obj\\",
+      "outputPath": "C:\\Timothe\\Solutions\\Foncia\\Tools\\CordovaPakagesBuilder\\CordovaPackagesBuiler\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -766,6 +902,14 @@
           "Prism.Unity": {
             "target": "Package",
             "version": "[6.3.0, )"
+          },
+          "Serilog": {
+            "target": "Package",
+            "version": "[2.6.0, )"
+          },
+          "Serilog.Sinks.File": {
+            "target": "Package",
+            "version": "[4.0.0, )"
           }
         }
       }

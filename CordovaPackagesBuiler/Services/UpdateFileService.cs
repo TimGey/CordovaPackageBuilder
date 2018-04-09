@@ -70,6 +70,8 @@ namespace CordovaPackagesBuiler.Services
                 {
                     var package_platform = widget.Attributes("android-packageName").SingleOrDefault();
                     package_platform.Value = dmD.Cpackages[0].NamePackage;
+                    var android_versionCode = widget.Attributes("android-versionCode").SingleOrDefault();
+                    android_versionCode.Value = (int.Parse(android_versionCode.Value)+1).ToString();
                 }
                 else if (dmD.Cpackages[0].NamePlatform == "windows")
                 {

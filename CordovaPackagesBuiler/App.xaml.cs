@@ -19,6 +19,8 @@ namespace CordovaPackagesBuiler
 
             var bootstrapper = new Bootstrapper();
             bootstrapper.Run();
+
+           
         }
     }
 }

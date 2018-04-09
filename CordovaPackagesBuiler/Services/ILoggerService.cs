@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CordovaPackagesBuiler.Services
 {
-  public  interface ISelectPathDirectoryService
+  public interface ILoggerService
     {
-        string SelectPath(string[] tPathFile);
-        string SelectFolder();
+        void SetPathLog(string path);
+        void AddLog(int typeLog, string msg);
+        void ClosingLogger();
     }
 }

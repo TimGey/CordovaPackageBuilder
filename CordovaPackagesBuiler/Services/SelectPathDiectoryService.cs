@@ -36,15 +36,15 @@ namespace CordovaPackagesBuiler.Services
                     find = false;
                 }
             }
-            _eventAggregator.GetEvent<FileIsFindEvent>().Publish(find);
+            _eventAggregator.GetEvent<PathFindEvent>().Publish(find);
             return find;
         }
 
 
-        public void SelectPath(string[] tPathFiles)
+        public string SelectPath(string[] tPathFiles)
         {
             //SelectFolder();
-            string PathDirectory;
+            string PathDirectory = "";
             _consoleService.clearConsole();
             OpenFileDialog opfile = new OpenFileDialog();
 
@@ -58,8 +58,8 @@ namespace CordovaPackagesBuiler.Services
                 {
                     _consoleService.ConsoleAddText(" Solution correcte", 3);
                 }
-                _eventAggregator.GetEvent<PathEvent>().Publish(PathDirectory);
             }
+            return PathDirectory;
         }
 
         public string SelectFolder()
