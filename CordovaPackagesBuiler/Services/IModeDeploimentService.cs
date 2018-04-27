@@ -9,7 +9,7 @@ namespace CordovaPackagesBuiler.Services
 {
    public interface IModeDeploimentService
     {
-        ModeDeploiment CreateModeDeploid(string deploiment, string VersionName, string VersionCode);
+        ModeDeploiment CreateModeDeploid(string deploiment, string VersionName, string VersionIdent, string VersionCode);
         ModeDeploiment AddPlatform(ModeDeploiment mdd, string platform);
     }
 }

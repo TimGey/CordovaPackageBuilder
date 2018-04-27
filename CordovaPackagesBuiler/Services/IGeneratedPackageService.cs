@@ -8,6 +8,6 @@ namespace CordovaPackagesBuiler.Services
 {
   public interface IGeneratedPackageService
     {
-        void StartGeneratedPakage(string plateform, string deploiment, string VersionCode, string VersionName, string PathDirectory, string PathPackageDirectory);
+        void StartGeneratedPakage(string plateform, string deploiment, string VersionIdent, string VersionName,string VersionCode, string PathDirectory, string PathPackageDirectory);
     }
 }

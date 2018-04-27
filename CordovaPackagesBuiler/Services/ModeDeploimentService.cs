@@ -31,13 +31,14 @@ namespace CordovaPackagesBuiler.Services
             return mdd;
         }
 
-        public ModeDeploiment CreateModeDeploid(string deploiment, string VersionName, string VersionCode)
+        public ModeDeploiment CreateModeDeploid(string deploiment, string VersionName, string VersionIdent, string VersionCode)
         {
             var Mdplt = new ModeDeploiment(deploiment.ToUpper());
             var JDeploiment = JObject.Parse(_config.CONFIG_JSON.GetValue(deploiment).ToString());
             Mdplt.Url = JDeploiment.GetValue("URL").ToString();
-            Mdplt.VersionCode = VersionCode;
+            Mdplt.VersionIdent = VersionIdent;
             Mdplt.VersionName = VersionName;
+            Mdplt.VersionCode = VersionCode;
 
             return Mdplt;
         }

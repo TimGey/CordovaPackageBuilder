@@ -33,7 +33,7 @@ namespace CordovaPackagesBuiler.Services
             var result = false;
             if (IsNotNullable(input))
             {
-                Regex rx = new Regex(@"^\d{4}$");
+                Regex rx = new Regex(@"^\d{4}\d*$");
                 result = rx.Match(input).Success;
                 SendResult(result, input);
             }

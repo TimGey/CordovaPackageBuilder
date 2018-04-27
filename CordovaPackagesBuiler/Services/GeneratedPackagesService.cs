@@ -8,6 +8,7 @@ using CordovaPackagesBuiler.Entyties;
 using Prism.Events;
 using CordovaPackagesBuiler.Events;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace CordovaPackagesBuiler.Services
 {
@@ -27,6 +28,7 @@ namespace CordovaPackagesBuiler.Services
         private string _pathdirectory;
         private string _pathPackageDirectory;
         private ModeDeploiment _mdDplt;
+        private string _versionCode;
 
         #endregion
 
@@ -66,7 +68,7 @@ namespace CordovaPackagesBuiler.Services
         private void OnCmdFinish()
         {
             //--restauration des fichiers d'oigine--//
-            RestaurationOriginFiles(_pathdirectory);
+            RestaurationOriginFiles(_pathdirectory, _mdDplt);
 
             if (_pathPackageDirectory != "Chemin de destination des packages générés")
             {
@@ -76,7 +78,7 @@ namespace CordovaPackagesBuiler.Services
         }
         #endregion
 
-        public void StartGeneratedPakage(string plateform, string deploiment, string VersionCode, string VersionName, string PathDirectory, string PathPackageDirectory)
+        public void StartGeneratedPakage(string plateform, string deploiment, string VersionIdent, string VersionCode, string VersionName, string PathDirectory, string PathPackageDirectory)
         {
             //on block le bouton pour générer le package
             _eventAggregator.GetEvent<IsBuildableEvent>().Publish(true);
@@ -88,7 +90,7 @@ namespace CordovaPackagesBuiler.Services
             if (!ReadOnlyFile(PathDirectory, new string[] { _config.PATH_CONFIG_XML, _config.PATH_CONFIG_CONSTANT_JS, _config.PATH_NEXWORD_MODULE_JS }))
             {
                 //--instanciation d'un ModeDeploiment && ajout d'une platform--//
-                ModeDeploiment MdDplt = _modeDeploimentService.CreateModeDeploid(deploiment, VersionName, VersionCode);
+                ModeDeploiment MdDplt = _modeDeploimentService.CreateModeDeploid(deploiment, VersionName, VersionIdent, VersionCode);
                 MdDplt = _modeDeploimentService.AddPlatform(MdDplt, plateform);
                 _mdDplt = MdDplt;
                 //--création du dossier backup pour les fichiers d'origine--//
@@ -143,8 +145,8 @@ namespace CordovaPackagesBuiler.Services
         #region RemovePackageToFinalDirectory
         private void MovePackage(ModeDeploiment mdd, string PathDirectory, string PathPackageDirectory)
         {
-            var nameFolderpackage = @"\" + DateTime.Now.Date.ToString("yyyyMMdd") + "_FONCIA_VISITE_" + mdd.ModeName.ToUpper() + "_" + mdd.VersionCode;
-            string[] tFolder = new string[] { @"\LivraisonFoncia", @"\Version", @"\" + mdd.Cpackages[0].NamePlatform.ToUpper(), nameFolderpackage };
+            var nameFolderpackage = @"\" + DateTime.Now.Date.ToString("yyyyMMdd") + "_FONCIA_VISITE_" + mdd.ModeName.ToUpper() + "_" + mdd.VersionIdent;
+            string[] tFolder = new string[] { @"\LivraisonFoncia" + "_" + DateTime.Now.Date.ToString("yyyyMMdd")+"-"+DateTime.Now.Hour+DateTime.Now.Minute, @"\Version", @"\" + mdd.Cpackages[0].NamePlatform.ToUpper(), nameFolderpackage };
 
             _backupFile.CreateDirectory(PathPackageDirectory, tFolder);
 
@@ -163,7 +165,7 @@ namespace CordovaPackagesBuiler.Services
             {
                 MoveWindowsPackage(mdd, PathDirectory, pathPackage);
                 _loggerService.ClosingLogger();
-                File.Move(_pathPackageDirectory + @"\log\log.txt", pathPackage + @"\log-"+DateTime.Now.Second+".txt");
+                File.Move(_pathPackageDirectory + @"\log\log.txt", pathPackage + @"\log-" + DateTime.Now.Second + ".txt");
             }
 
             _eventAggregator.GetEvent<IsBuildableEvent>().Publish(false);
@@ -175,8 +177,9 @@ namespace CordovaPackagesBuiler.Services
 
         private void MoveAndroidPackage(ModeDeploiment mdd, string PathDirectory, string PathPackageDirectory)
         {
-            MoveFiledPackage(PathDirectory + mdd.Cpackages[0].Path_appli_generate, PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk");
-            _cmdCordovaService.CMDExecute(_config.Aapt, " aapt.exe dump badging " + PathPackageDirectory + "\\android-release_" + mdd.VersionCode + "-" + mdd.ModeName.ToLower() + ".apk", false);
+            MoveFiledPackage(PathDirectory + mdd.Cpackages[0].Path_appli_generate, PathPackageDirectory + "\\android-release_" + mdd.VersionIdent + "-" + mdd.ModeName.ToLower() + ".apk");
+            File.Create(PathPackageDirectory + "/" + _versionCode + ".txt");
+            _cmdCordovaService.CMDExecute(_config.Aapt, " aapt.exe dump badging " + PathPackageDirectory + "\\android-release_" + mdd.VersionIdent + "-" + mdd.ModeName.ToLower() + ".apk", false);
         }
 
 
@@ -227,8 +230,24 @@ namespace CordovaPackagesBuiler.Services
 
         #region RestaurationOriginFiles
 
-        private void RestaurationOriginFiles(string PathDirectory)
+        private void RestaurationOriginFiles(string PathDirectory, ModeDeploiment dmD)
         {
+            if (dmD.Cpackages[0].NamePlatform == "android")
+            {
+                var ConfigXml = XDocument.Load(Path.Combine(PathDirectory + "/OldConfig" + "/Old.config.xml"));
+                var widget = ConfigXml.Elements().SingleOrDefault();
+                var android_versionCode = widget.Attributes("android-versionCode").SingleOrDefault();
+                if (dmD.VersionCode == "000000")
+                {
+                    android_versionCode.Value = (int.Parse(android_versionCode.Value) + 1).ToString();
+                }
+                else
+                {
+                    android_versionCode.Value = dmD.VersionCode;
+                }
+                _versionCode = android_versionCode.Value;
+                ConfigXml.Save(Path.Combine(PathDirectory + "/OldConfig" + "/Old.config.xml"));
+            }
             _backupFile.RemoveOldFile(_config.PATH_CONFIG_XML, "config.xml", PathDirectory);
             _backupFile.RemoveOldFile(_config.PATH_CONFIG_CONSTANT_JS, "config.constant.js", PathDirectory);
             _backupFile.RemoveOldFile(_config.PATH_NEXWORD_MODULE_JS, "nexworld.module.js", PathDirectory);

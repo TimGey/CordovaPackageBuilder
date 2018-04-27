@@ -35,7 +35,7 @@ namespace CordovaPackagesBuiler.Services
                 containt += "       APPLICATION_IDENT: \"FONCIA-GESTION-VISITE\",\n";
                 containt += "       APPLICATION_IDENT_PHONE: \"FONCIA-GESTION-VISITE-SMARTPHONE\",\n";
                 containt += "       VERSION_NAME:\"" + dmD.VersionName + "\",\n";
-                containt += "       VERSION_IDENT:" + dmD.VersionCode + ",\n";
+                containt += "       VERSION_IDENT:" + dmD.VersionIdent + ",\n";
                 containt += "       PREPROD:" + (dmD.ModeName == "PREPROD").ToString().ToLower() + ",\n";
                 containt += "       MEAP_URL:" + dmD.Url + "\n";
                 containt += " });";
@@ -71,7 +71,15 @@ namespace CordovaPackagesBuiler.Services
                     var package_platform = widget.Attributes("android-packageName").SingleOrDefault();
                     package_platform.Value = dmD.Cpackages[0].NamePackage;
                     var android_versionCode = widget.Attributes("android-versionCode").SingleOrDefault();
-                    android_versionCode.Value = (int.Parse(android_versionCode.Value)+1).ToString();
+                    if (dmD.VersionCode == "000000")
+                    {
+                        android_versionCode.Value = (int.Parse(android_versionCode.Value) + 1).ToString();
+                    }
+                    else
+                    {
+                        android_versionCode.Value = dmD.VersionCode;
+                    }
+
                 }
                 else if (dmD.Cpackages[0].NamePlatform == "windows")
                 {

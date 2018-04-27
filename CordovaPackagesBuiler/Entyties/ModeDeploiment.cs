@@ -34,6 +34,14 @@ namespace CordovaPackagesBuiler.Entyties
         private string _versionName;
 
 
+        public string VersionIdent
+        {
+            get { return _versionIdent; }
+            set { SetProperty(ref _versionIdent, value); }
+        }
+        private string _versionIdent;
+
+
         public string VersionCode
         {
             get { return _versionCode; }

@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Prism.Events;
 using CordovaPackagesBuiler.Events;
 using System.Text;
+using System;
 
 namespace CordovaPackagesBuiler.ViewModels
 {
@@ -49,13 +50,22 @@ namespace CordovaPackagesBuiler.ViewModels
         private string _versionName;
 
         [Required]
-        [RegularExpression(@"^[\d]+[\d]+[\d]+[\d]+$")]
+        [RegularExpression(@"^[\d]+([\d]){5}$")]
         public string VersionCode
         {
             get { return _versionCode; }
             set { SetProperty(ref _versionCode, value); }
         }
         private string _versionCode;
+
+        [Required]
+        [RegularExpression(@"^[\d]+[\d]+[\d]+[\d]+$")]
+        public string VersionIdent
+        {
+            get { return _versionIdent; }
+            set { SetProperty(ref _versionIdent, value); }
+        }
+        private string _versionIdent;
 
         public string PathDirectory
         {
@@ -269,9 +279,14 @@ namespace CordovaPackagesBuiler.ViewModels
                 //-----appel au service------//
                 if (platform != "")
                 {
-                    if (_controleInputService.IsNumberCode(VersionName) && _controleInputService.IsNumberVersion(_versionCode))
+                    if (string.IsNullOrEmpty(VersionCode))
                     {
-                        _generatedPackageService.StartGeneratedPakage(platform, deployment, VersionCode, VersionName, PathDirectory, PathFinalDirectory);
+                        VersionCode = "000000";
+                    }
+                    if (_controleInputService.IsNumberCode(VersionName) && _controleInputService.IsNumberVersion(_versionIdent) && _controleInputService.IsNumberVersion(_versionCode))
+                    {
+
+                        _generatedPackageService.StartGeneratedPakage(platform, deployment, VersionIdent, VersionCode, VersionName, PathDirectory, PathFinalDirectory);
                     }
 
 
